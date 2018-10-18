@@ -4,6 +4,8 @@ import re
 import os
 from time import sleep
 
+password = input("Please enter the password: ")
+
 if not os.path.isfile("posts_replied_to.txt"):
     posts_replied_to = []
 else:
@@ -14,7 +16,7 @@ else:
 
 reddit = praw.Reddit(client_id='RqH3jJN2UOd5ZQ',
                      client_secret='CHbwP2-IiKYMEvruOVMhTFxyeBE',
-                     password='Moon!314',
+                     password=password,
                      username='honest_hearts_bot',
                      user_agent='Honest Hearts Bot alpha 1')
 
