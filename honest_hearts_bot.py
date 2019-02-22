@@ -1,5 +1,4 @@
 import praw
-import pdb
 import re
 from pathlib import Path
 from time import sleep
@@ -23,8 +22,8 @@ reddit = praw.Reddit(client_id='RqH3jJN2UOd5ZQ',
                      username='honest_hearts_bot',
                      user_agent='Honest Hearts Bot alpha 1')
 
-subreddit_name = "testingground4bots" # Bot testing ground
-#subreddit_name = "EarthPorn"
+#subreddit_name = "testingground4bots" # Bot testing ground
+subreddit_name = "EarthPorn"
 
 subreddit = reddit.subreddit(subreddit_name)  # change this to 'EarthPorn' before releasing
 
@@ -32,7 +31,7 @@ print("Logged in.")
 
 
 while True:
-    for submission in subreddit.new(limit=5):
+    for submission in subreddit.hot(limit=10):  # hot keeps responses to only popular posts, which keeps the bot from getting annoying
         if re.search("Zion", submission.title, re.IGNORECASE) and submission.id not in posts_replied_to:
             print("Bot replying to:", submission.title, "\nPost ID:", submission.id, "\n")
             submission.reply("something something Honest Hearts\n\n___\n\n^I ^am ^a ^bot ^in ^training. ^This ^action ^was ^performed ^automatically, ^but ^not ^necessarily ^relevantly. ^beep ^boop. ")
